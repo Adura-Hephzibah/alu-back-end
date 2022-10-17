@@ -9,8 +9,10 @@ import sys
 
 
 if __name__ == "__main__":
-    url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(sys.argv[1])
-    url_2 = "https://jsonplaceholder.typicode.com/users/{}/".format(sys.argv[1])
+    url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(
+        sys.argv[1])
+    url_2 = "https://jsonplaceholder.typicode.com/users/{}/".format(
+        sys.argv[1])
 
     response = requests.get(url)
     result = response.json()
@@ -27,9 +29,9 @@ if __name__ == "__main__":
             count_2 += 1
         if item.get('completed') and item.get('userId') == int(sys.argv[1]):
             count += 1
-    print('Employee {} is done with tasks({}/{}):'.format(item_2, count, count_2))
+    print('Employee {} is done with tasks({}/{}):'.format(item_2,
+                                                          count, count_2))
 
     for item in result:
-        if item.get('completed')  and item.get('userId') is int(sys.argv[1]):
+        if item.get('completed') and item.get('userId') == int(sys.argv[1]):
             print("\t {}".format(item['title']))
-
