@@ -7,8 +7,8 @@ Module
 import requests
 from sys import argv
 
-url = f"https://jsonplaceholder.typicode.com/users/{argv[1]}/todos"
-url_2 = f"https://jsonplaceholder.typicode.com/users/{argv[1]}/"
+url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(argv[1])
+url_2 = "https://jsonplaceholder.typicode.com/users/{}/".format(argv[1])
 
 response = requests.get(url)
 result = response.json()
