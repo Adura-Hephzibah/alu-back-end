@@ -7,27 +7,29 @@ Module
 import requests
 import sys
 
-url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(sys.argv[1])
-url_2 = "https://jsonplaceholder.typicode.com/users/{}/".format(sys.argv[1])
 
-response = requests.get(url)
-result = response.json()
-response_2 = requests.get(url_2)
-result_2 = response_2.json()
+if __name__ == "__main__":
+    url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(sys.argv[1])
+    url_2 = "https://jsonplaceholder.typicode.com/users/{}/".format(sys.argv[1])
 
-item_2 = result_2['name']
+    response = requests.get(url)
+    result = response.json()
+    response_2 = requests.get(url_2)
+    result_2 = response_2.json()
 
-count = 0
-count_2 = 0
+    item_2 = result_2.get('name')
 
-for item in result:
-    if (item['completed'] is True or item['completed'] is False) \
-            and item['userId'] == int(sys.argv[1]):
-        count_2 += 1
-    if item['completed'] is True and item['userId'] == int(sys.argv[1]):
-        count += 1
-print('Employee {} is done with tasks({}/{}):'.format(item_2, count, count_2))
+    count = 0
+    count_2 = 0
 
-for item in result:
-    if item['completed'] is True and item['userId'] is int(sys.argv[1]):
-        print("\t {}".format(item['title']))
+    for item in result:
+        if item.get('userId') == int(sys.argv[1]):
+            count_2 += 1
+        if item.get('completed') and item.get('userId') == int(sys.argv[1]):
+            count += 1
+    print('Employee {} is done with tasks({}/{}):'.format(item_2, count, count_2))
+
+    for item in result:
+        if item.get('completed')  and item.get('userId') is int(sys.argv[1]):
+            print("\t {}".format(item['title']))
+
