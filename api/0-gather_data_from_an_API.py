@@ -30,5 +30,4 @@ print('Employee {} is done with tasks({}/{}):'.format(item_2, count, count_2))
 
 for item in result:
     if item['completed'] is True and item['userId'] is int(argv[1]):
-        print('\t', ' ', end='')
-        print(item['title'])
+        print("\t {}".format(item['title']))
